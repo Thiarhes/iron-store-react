@@ -8,7 +8,7 @@ import { Switch, Route } from 'react-router-dom';
 export default class App extends Component {
   render() {
     return (
-      <div style={divStyle}>
+      <div>
         <NavBar />
         <Switch>
           <Route exact path='/' component={Home} />
@@ -18,11 +18,4 @@ export default class App extends Component {
       </div>
     )
   }
-}
-
-const divStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  flexDirection: 'column',
-  textTransform: 'uppercase',
 }

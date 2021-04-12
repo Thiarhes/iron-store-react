@@ -1,52 +1,45 @@
 import React, { Component } from 'react';
+import 'bulma/css/bulma.css';
 import { Link } from 'react-router-dom';
-import { Button } from './Button';
 
 export default class NavBar extends Component {
     render() {
         return (
-
-            <nav style={navStyle}>
-                <div style={divNavStyleA}>
-                    <Link style={linkStyle} to='/'>
-                        <span><h1 style={{ fontSize: '2em' }}>Iron Store</h1></span>
+                <nav className="navbar has-background-grey-light" role="navigation" aria-label="main navigation">
+                    <div className="navbar-brand">
+                    <Link to='/' style={linkStyle}>
+                     <span>Iron Store</span>
                     </Link>
-                </div>
-                <div style={divNavStyleB}>
-                    <Link style={linkStyle} to='/signup'><Button name='Registrar' /></Link>
-                    <Link style={linkStyle} to='/login'><Button name='Entrar' /></Link>
-                </div>
-            </nav>
+                        
+                    </div>
 
+                    <div id="navbarBasicExample" className="navbar-menu">
+                        <div className="navbar-start">
+                            
+                        </div>
+
+                        <div className="navbar-end">
+                            <div className="navbar-item">
+                                <div className="buttons">
+                                    <Link to='/signup' className="button is-black">
+                                        <strong>SIGNUP</strong>
+                                    </Link>
+                                    <Link to='/login' className="button is-success" >
+                                        <strong>LOGIN</strong>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
         )
     }
 }
 
-const navStyle = {
-    minWidth: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'black',
-}
-
-const divNavStyleA = {
-    marginLeft: '130px',
-    color: 'white',
-}
-
-const divNavStyleB = {
-    display: 'flex',
-    minWidth: '320px',
-    justifyContent: 'space-around',
-    color: 'white',
-    marginRight: '50px',
-    fontSize: '1.2em'
-}
-
 const linkStyle = {
-    color: 'white',
-    textDecoration: 'none',
+    color: '#2E2E2E',
     textTransform: 'uppercase',
-    fontWeight: '500',
+    fontWeight: '700',
+    fontSize:'2.2rem',
+    marginLeft:'120px',
 }
