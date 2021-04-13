@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import 'bulma/css/bulma.css';
+import api from '../utils/api.utils';
 
 export default class Login extends Component {
     state = {
         email: '',
         password: '',
+        message: '',
     }
 
     handleInput = (e) => {
@@ -14,8 +16,19 @@ export default class Login extends Component {
         })
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+           await api.login(this.state);
+           this.props.handleLogin(true);
+           this.props.history.push('/');
+
+        } catch (error) {
+            console.log(error);
+            this.setState({
+                message: 'Error while logging in a user'
+            })
+        }
     }
 
 
@@ -29,29 +42,30 @@ export default class Login extends Component {
                             <hr className="login-hr" />
                             <p className="subtitle has-text-black">Please login to see our cool stuffs!</p>
                             <div className="box">
+                                {this.state.message && <h2 style={errorStyle}>{this.state.message}</h2>}
                                 <form>
                                     <div className="field">
                                         <div className="control">
                                             <input
-                                            name='email'
-                                            value={this.state.email}
-                                            onChange={this.handleInput} 
-                                            className="input is-large" 
-                                            type="email" 
-                                            placeholder="Your Email" 
-                                            autofocus="" />
+                                                name='email'
+                                                value={this.state.email}
+                                                onChange={this.handleInput}
+                                                className="input is-large"
+                                                type="email"
+                                                placeholder="Your Email"
+                                                autofocus="" />
                                         </div>
                                     </div>
 
                                     <div className="field">
                                         <div className="control">
-                                            <input 
-                                            name='password'
-                                            value={this.state.password}
-                                            onChange={this.handleInput}
-                                            className="input is-large" 
-                                            type="password" 
-                                            placeholder="Your Password" />
+                                            <input
+                                                name='password'
+                                                value={this.state.password}
+                                                onChange={this.handleInput}
+                                                className="input is-large"
+                                                type="password"
+                                                placeholder="Your Password" />
                                         </div>
                                     </div>
                                     <div className="field">
@@ -61,10 +75,10 @@ export default class Login extends Component {
                                    </label>
                                     </div>
                                     <button
-                                    type='submit'
-                                    onClick={this.handleSubmit} 
-                                    className="button is-block is-success is-large is-fullwidth">
-                                        LOGIN 
+                                        type='submit'
+                                        onClick={this.handleSubmit}
+                                        className="button is-block is-success is-large is-fullwidth">
+                                        LOGIN
                                     <i className="fa fa-sign-in" aria-hidden="true"></i>
                                     </button>
                                 </form>
@@ -75,4 +89,11 @@ export default class Login extends Component {
             </section>
         )
     }
+}
+
+const errorStyle = {
+    color:'#FF0040',
+    textTransform:'uppercase',
+    fontWeight:'500',
+    marginBottom:'10px',
 }
