@@ -22,36 +22,46 @@ export default class NavBar extends Component {
     render() {
         return (
             <nav className="navbar has-background-grey-light" role="navigation" aria-label="main navigation">
-                <div className="navbar-brand">
-
-                    <Link to='/' style={linkStyle}>
-                        <span>Iron Store</span>
-                    </Link>
-                    <div onClick={this.toggleMenu} role="button" className={`navbar-burger ${this.state.toggleMenu}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </div>
-                </div>
-
-                <div id="navbarBasicExample" className={`navbar-menu ${this.state.toggleMenu}`}>
-                    <div className="navbar-start">
-
-                    </div>
-                    <div className="navbar-item has-dropdown is-hoverable"></div>
-                    <div className="navbar-end">
-                        <div className="navbar-item">
-                            <div className="buttons" style={buttonStyle}>
-                                <Link to='/signup' className="button is-black">
-                                    <strong>SIGNUP</strong>
-                                </Link>
-                                <Link to='/login' className="button is-success" >
-                                    <strong>LOGIN</strong>
-                                </Link>
+                        <div className="navbar-brand">
+                            <Link to='/' style={linkStyle}>
+                                <span>Iron Store</span>
+                            </Link>
+                            <div onClick={this.toggleMenu} role="button" className={`navbar-burger ${this.state.toggleMenu}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                                <span aria-hidden="true"></span>
+                                <span aria-hidden="true"></span>
+                                <span aria-hidden="true"></span>
                             </div>
                         </div>
-                    </div>
-                </div>
+
+                        <div id="navbarBasicExample" className={`navbar-menu ${this.state.toggleMenu}`}>
+                            <div className="navbar-start">
+
+                            </div>
+                            <div className="navbar-item has-dropdown is-hoverable"></div>
+                            <div className="navbar-end">
+                                <div className="navbar-item">
+                                {this.props.loggedInUser ?
+                                  <div className="buttons" style={buttonStyle}>
+                                  <Link to='/products' className="button is-black">
+                                      <strong>PRODUCTS</strong>
+                                  </Link>
+                                  <Link to='/logout' className="button is-success" >
+                                      <strong>LOGOUT</strong>
+                                  </Link>
+                              </div> 
+                                  : 
+                                    <div className="buttons" style={buttonStyle}>
+                                        <Link to='/signup' className="button is-black">
+                                            <strong>SIGNUP</strong>
+                                        </Link>
+                                        <Link to='/login' className="button is-success" >
+                                            <strong>LOGIN</strong>
+                                        </Link>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
             </nav>
         )
     }
@@ -66,6 +76,6 @@ const linkStyle = {
 }
 
 const buttonStyle = {
-display:'flex',
-justifyContent:'center',
+    display: 'flex',
+    justifyContent: 'center',
 }
