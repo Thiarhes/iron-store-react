@@ -13,8 +13,8 @@ export default class Login extends Component {
         const { name, value } = e.target;
         this.setState({
             [name]: value
-        })
-    }
+        });
+    };
 
     handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,7 +40,7 @@ export default class Login extends Component {
                         <div className="column is-4 is-offset-4">
                             <h3 className="title has-text-black">LOGIN</h3>
                             <hr className="login-hr" />
-                            <p className="subtitle has-text-black">Please login to see our cool stuffs!</p>
+                            <p className="subtitle has-text-black">PLEASE LOGIN TO SEE OUR COOL STUFFS!</p>
                             <div className="box">
                                 {this.state.message && <h2 style={errorStyle}>{this.state.message}</h2>}
                                 <form>
