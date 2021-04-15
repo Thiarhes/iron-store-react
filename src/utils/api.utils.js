@@ -20,7 +20,15 @@ class Api {
             console.error(error);
             throw new Error(error);
         }
-    }
+    };
+
+    signup = async (payload) => {
+        try {
+            await this.api.post('/signup', payload);
+        } catch (error) {
+            throw new Error(error)
+        }
+    };
 
 }
 

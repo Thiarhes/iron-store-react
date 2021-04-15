@@ -1,101 +1,141 @@
 import React, { Component } from 'react'
 import 'bulma/css/bulma.css';
+import api from '../utils/api.utils'
 
 export default class SignUp extends Component {
+    state = {
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        message: '',
+    }
+
+    handleInput = (e) => {
+        const { name, value } = e.target;
+        this.setState({
+            [name]: value
+        });
+    };
+
+    handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const { username, email, password, confirmPassword } = this.state;
+            if (password !== confirmPassword) {
+                this.setState({
+                    message: 'Password and confirmation does not match!'
+                });
+                return;
+            }  
+                this.setState({
+                    username: '',
+                    email:'',
+                    password: '',
+                    confirmPassword: '',
+                    errorMessage: '',
+                });
+                await api.signup({
+                    username,
+                    email,
+                    password,
+                });
+                this.props.history.push('/login');
+            
+        } catch (error) {
+            console.error(error);
+            this.setState({
+                message:'Error while registering a new user'
+            })
+        }
+    }
+
     render() {
-        return ( 
-                <div className="columns is-tablet">
-      <div className="column is-one-quarter "></div>
-      <div className="column custom-color">
-        <div className="field">
-          <label className="label">Username</label>
-          <div className="control ">
-            <input className="input " type="text" placeholder="Username"/>
-            <span className="icon is-small is-left">
-            <i className="fas fa-user"></i>
-            </span>
-            <span className="icon is-small is-right">
-            <i className="fas fa-check"></i>
-            </span>
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Email</label>
-          <div className="control ">
-            <input className="input " type="email" placeholder="Email"/>
-            <span className="icon is-small is-left">
-            <i className="fas fa-envelope"></i>
-            </span>
-            <span className="icon is-small is-right">
-            <i className="fas fa-exclamation-triangle"></i>
-            </span>
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Password</label>
-          <div className="control ">
-            <input className="input " type="password" placeholder="Password"/>
-            <span className="icon is-small is-left">
-            <i className="fas fa-envelope"></i>
-            </span>
-            <span className="icon is-small is-right">
-            <i className="fas fa-exclamation-triangle"></i>
-            </span>
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Confirm Password</label>
-          <div className="control ">
-            <input className="input " type="password" placeholder="Confirm Password"/>
-            <span className="icon is-small is-left">
-            <i className="fas fa-envelope"></i>
-            </span>
-            <span className="icon is-small is-right">
-            <i className="fas fa-exclamation-triangle"></i>
-            </span>
-          </div>
-        </div>
-        {/* <div className="field"> */}
-          {/* <label className="label">Number</label> */}
-          {/* <div className="control "> */}
-            {/* <input className="input " type="number" placeholder="Number"/> */}
-            {/* <span className="icon is-small is-left"> */}
-            {/* <i className="fas fa-user"></i> */}
-            {/* </span> */}
-            {/* <span className="icon is-small is-right"> */}
-            {/* <i className="fas fa-check"></i> */}
-            {/* </span> */}
-          {/* </div> */}
-        {/* </div> */}
-        {/* <div className="field"> */}
-          {/* <label className="label">Gender</label> */}
-          {/* <div className="control"> */}
-            {/* <label className="radio"> */}
-            {/* <input type="radio" name="answer"/> */}
-            {/* Male */}
-            {/* </label> */}
-            {/* <label className="radio"> */}
-            {/* <input type="radio" name="answer"/> */}
-            {/* Female */}
-            {/* </label> */}
-          {/* </div> */}
-        {/* </div> */}
-        <div className="field pt-3">
-          <div className="control">
-            <label className="checkbox">
-            <input type="checkbox"/>
-            I agree to the <a href="#">terms and conditions</a>
-            </label>
-          </div>
-        </div>
-        <div className="field is-grouped pt-5">
-          <div className="control">
-            <button className="button submit">Register</button>
-          </div>
-        </div>
-      </div>
-      <div className="column is-one-quarter"></div>
-    </div>
+        return (
+            <section className="hero is-white is-fullheight">
+                <div className="hero-body">
+                    <div className="container has-text-centered">
+                        <div className="column is-4 is-offset-4">
+                            <h3 className="title has-text-black">REGISTER</h3>
+                            <hr className="login-hr" />
+                            <p className="subtitle has-text-black">WELCOME TO IRON STORE!</p>
+                            <div className="box">
+                                <form onSubmit={this.handleSubmit}>
+                                    <div className="field">
+                                        <div className="field">
+                                            <div className="control">
+                                                <input
+                                                    name='username'
+                                                    required
+                                                    value={this.state.username}
+                                                    onChange={this.handleInput}
+                                                    className="input is-large"
+                                                    type="text"
+                                                    placeholder="Username"
+                                                    autofocus="" />
+                                            </div>
+                                        </div>
+                                        <div className="control">
+                                            <input
+                                                name='email'
+                                                required
+                                                value={this.state.email}
+                                                onChange={this.handleInput}
+                                                className="input is-large"
+                                                type="email"
+                                                placeholder="Email"
+                                                autofocus="" />
+                                        </div>
+                                    </div>
+
+                                    <div className="field">
+                                        <div className="control">
+                                            <input
+                                                name='password'
+                                                required
+                                                value={this.state.password}
+                                                onChange={this.handleInput}
+                                                className="input is-large"
+                                                type="password"
+                                                placeholder="Password" />
+                                        </div>
+                                    </div>
+                                    <div className="field">
+                                        <div className="control">
+                                            <input
+                                                name='confirmPassword'
+                                                required
+                                                value={this.state.confirmPassword}
+                                                onChange={this.handleInput}
+                                                className="input is-large"
+                                                type="password"
+                                                placeholder="Confirm Password" />
+                                        </div>
+                                    </div>
+                                    <button
+                                        type='submit'
+                                        className="button is-block is-success is-large is-fullwidth">
+                                        REGISTER
+                                    <i className="fa fa-sign-in" aria-hidden="true"></i>
+                                    </button>
+                                </form>
+                                {this.state.message && (
+                                    <div style={styleError}>{this.state.message}</div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         )
     }
+}
+
+const styleError = {
+    border: "1px solid red",
+    color: "red",
+    textAlign: "center",
+    padding: "10px",
+    borderRadius: "3px",
+    width: "100%",
 }
