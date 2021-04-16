@@ -43,9 +43,8 @@ export default class SignUp extends Component {
                 this.props.history.push('/login');
             
         } catch (error) {
-            console.error(error);
             this.setState({
-                message:'Error while registering a new user'
+                message: error.response.data
             })
         }
     }

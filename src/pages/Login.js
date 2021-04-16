@@ -24,9 +24,8 @@ export default class Login extends Component {
            this.props.history.push('/');
 
         } catch (error) {
-            console.log(error);
             this.setState({
-                message: 'Error while logging in a user'
+                message: 'Email and password does not match with a registered user'
             })
         }
     }
