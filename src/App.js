@@ -14,7 +14,11 @@ export default class App extends Component {
   handleLogin = (value) => {
     this.setState({
       loggedInUser: value
-    })
+    });
+    if(value === false) {
+      localStorage.removeItem("token");
+      window.location = "/";
+    }
   }
 
   componentDidMount = async () => {

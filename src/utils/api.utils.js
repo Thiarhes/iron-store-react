@@ -29,14 +29,6 @@ class Api {
         }
     };
 
-    logout = async () => {
-        try {
-            
-        } catch (error) {
-            
-        }
-    }
-
 }
 
 export default new Api();
