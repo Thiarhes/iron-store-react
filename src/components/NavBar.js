@@ -21,7 +21,7 @@ export default class NavBar extends Component {
 
     render() {
         return (
-            <nav className="navbar has-background-grey-light" role="navigation" aria-label="main navigation">
+            <nav className="navbar has-background-grey" role="navigation" aria-label="main navigation">
                         <div className="navbar-brand">
                             <Link to='/' style={linkStyle}>
                                 <span>Iron Store</span>
@@ -68,11 +68,14 @@ export default class NavBar extends Component {
 }
 
 const linkStyle = {
-    color: '#2E2E2E',
+    color: '#848484',
     textTransform: 'uppercase',
     fontWeight: '700',
     fontSize: '2.2rem',
-    marginLeft: '120px',
+    marginLeft: '140px',
+    border:'1px solid #F8F9F9',
+    borderRadius:'25%',
+    background:'#fff'
 }
 
 const buttonStyle = {

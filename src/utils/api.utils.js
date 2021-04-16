@@ -17,8 +17,7 @@ class Api {
             localStorage.setItem('token', token);
 
         } catch (error) {
-            console.error(error);
-            throw new Error(error);
+            throw error
         }
     };
 
@@ -26,9 +25,17 @@ class Api {
         try {
             await this.api.post('/signup', payload);
         } catch (error) {
-            throw new Error(error)
+            throw error
         }
     };
+
+    logout = async () => {
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
 
 }
 
