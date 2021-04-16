@@ -32,7 +32,7 @@ export default class App extends Component {
       <div>
         <NavBar loggedInUser={this.state.loggedInUser} handleLogin={this.handleLogin}/>
         <Switch>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' render={(props) => <Home {...props} loggedInUser={this.state.loggedInUser} />} />
           <Route path='/signup' component={SignUp} />
           <Route path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} />} />
         </Switch>
