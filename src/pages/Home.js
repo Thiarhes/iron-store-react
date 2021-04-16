@@ -1,13 +1,11 @@
 import React from 'react'
 
-export default function Home() {
+export const Home = () => {
     return (
-       
-            <div>
-                <p style={pStyle}>The best place where you can find a console game. Enter and welcome!</p>
-                <img style={imgStyle} src='./assets/images/consoles3.png' alt='consoles img'/>
-            </div>
-        
+        <div>
+             <p style={pStyle}>The best place where you can find a console game. Enter and welcome!</p>
+             <img style={imgStyle} src='./assets/images/consoles3.png' alt='consoles img'/>
+        </div>
     )
 }
 
