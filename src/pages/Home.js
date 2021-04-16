@@ -1,10 +1,18 @@
 import React from 'react'
 
-export const Home = () => {
+export const Home = ( props ) => {
     return (
         <div>
-             <p style={pStyle}>The best place where you can find a console game. Enter and welcome!</p>
-             <img style={imgStyle} src='./assets/images/consoles3.png' alt='consoles img'/>
+            {props.loggedInUser ?
+              <> 
+                <img style={imgStyle} src='./assets/images/consoles3.png' alt='consoles img' />
+                </>
+                : 
+                <>
+                <p style={pStyle}>The best place where you can find a console game. Enter and welcome!</p>
+                <img style={imgStyle} src='./assets/images/consoles3.png' alt='consoles img'/>
+              </>
+            }
         </div>
     )
 }
