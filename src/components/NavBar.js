@@ -44,7 +44,7 @@ export default class NavBar extends Component {
                             {loggedInUser ?
                                 <div className="buttons" style={buttonStyle}>
                                     <Link to='/products' className="button is-black">
-                                        <strong>PRODUCTS</strong>
+                                        <strong>AMAZING LIST</strong>
                                     </Link>
                                     <Link 
                                     onClick={() => handleLogin(false)}
