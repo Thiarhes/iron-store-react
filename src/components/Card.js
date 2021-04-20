@@ -9,7 +9,9 @@ export default class Card extends Component {
         return (
             <div className="card" style={divCard}>
                 <div className="card-image">
-                    <img src={image} alt="console game" />
+                    <img style={imgStyle} src={image} alt="console game" />
+                </div>
+                <div>
                     <p style={titleStyle}>{title}</p>
                     <Link to={`/product/detail/${_id}`}><span style={linkStyle}>DETAILS</span></Link>
                 </div>
@@ -19,26 +21,34 @@ export default class Card extends Component {
 }
 
 const divCard = {
-    display:'flex',
-    flexDirection:'column',
-    textAlign:'center',
-    margin:'0 auto',
-    minHeight:'70vh',
-    maxWidth:'960px',
-    marginTop:'10px',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
+    justifyContent: 'space-around',
+    margin: '0 auto',
+    minHeight: '80vh',
+    maxWidth: '960px',
+    marginTop: '10px',
+    background: 'rgb(231,245,245)',
+    background: 'linear-gradient(0deg, rgba(231,245,245,1) 0%, rgba(221,232,240,1) 61%, rgba(234,240,233,1) 100%, rgba(245,242,235,1) 100%)',
+}
+
+const imgStyle = {
+    maxWidth: '600px',
+    maxHeight: '450px',
 }
 
 const titleStyle = {
-    textTransform:'uppercase',
-    fontWeight:'600',
-    fontSize:'1.4em',
-    marginBottom:'5px'
+    textTransform: 'uppercase',
+    fontWeight: '900',
+    fontSize: '1.2em',
+    marginBottom: '10px'
 }
 
 const linkStyle = {
-    fontWeight:'600',
-    color:'#fff',
-    background:'#AEB6BF',
-    padding:'3px', 
-    borderRadius:'5px',   
+    fontWeight: '600',
+    color: '#fff',
+    background: '#AEB6BF',
+    padding: '3px',
+    borderRadius: '5px',
 }
