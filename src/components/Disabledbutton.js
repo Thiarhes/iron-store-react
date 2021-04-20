@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 
-export default class Button extends Component {
+export default class DisabledButton extends Component {
     render() {
         const { text, onClick } = this.props;
         return (
             <button 
             style={buttonStyle} 
             onClick={onClick} 
+            disabled
             >
                 {text}
             </button>
@@ -16,11 +17,11 @@ export default class Button extends Component {
 
 const buttonStyle = {
     width:'20%',
-    background:'#485FF6 ',
+    background:'#34495E',
     color:'#fff',
     border:'none',
     padding:'15px 30px',
-    cursor:'pointer',
+    cursor:'not-allowed',
     borderRadius:'3px',
     fontSize:'1.1rem',
     fontWeight:'600'
