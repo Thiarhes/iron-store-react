@@ -9,7 +9,7 @@ export default class Card extends Component {
         return (
             <div className="card" style={divCard}>
                 <div className="card-image">
-                    <img style={imgStyle} src={image} alt="console game" />
+                    <img style={imgStyle} src={image} alt="Placeholder image" />
                 </div>
                 <div>
                     <p style={titleStyle}>{title}</p>

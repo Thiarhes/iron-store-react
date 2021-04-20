@@ -25,7 +25,6 @@ const imgStyle = {
 
 const imgLoggedStyle = {
     width:'100%',
-    marginTop:'10px'
 }
 
 const pStyle = {
@@ -35,4 +34,5 @@ const pStyle = {
     fontSize: '1.8rem',
     fontWeight: '700',
     border: '20px solid white',
+    marginTop:'50px'
 }
