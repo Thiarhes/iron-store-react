@@ -22,7 +22,7 @@ export default class NavBar extends Component {
     render() {
         const { loggedInUser, handleLogin } = this.props;
         return (
-            <nav className="navbar has-background-grey" role="navigation" aria-label="main navigation">
+            <nav style={navStyle} className="navbar has-background-grey" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <Link to='/' style={linkStyle}>
                         <span>Iron Store</span>
@@ -69,6 +69,10 @@ export default class NavBar extends Component {
             </nav>
         )
     }
+}
+
+const navStyle = {
+    minWidth:'100%',
 }
 
 const linkStyle = {
