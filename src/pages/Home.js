@@ -10,7 +10,7 @@ export const Home = ( props ) => {
                 </>
                 : 
                 <>
-                <p style={pStyle}>The best place where you can find a game console. Enter and welcome!</p>
+                <p style={pStyle}>Gamer, here is your house! Enter and welcome!</p>
                 <img style={imgStyle} src='./assets/images/consoles3.png' alt='consoles img'/>
               </>
             }
