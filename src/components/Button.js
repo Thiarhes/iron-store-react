@@ -15,7 +15,7 @@ export default class Button extends Component {
 }
 
 const buttonStyle = {
-    width:'20%',
+    display:'inline-block',
     background:'#485FF6 ',
     color:'#fff',
     border:'none',

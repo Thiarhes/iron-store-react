@@ -42,7 +42,7 @@ export default class Product extends Component {
     render() {
         const { products, searchValue, page, productsPerPage, allProducts } = this.state;
         const filteredProducts = !!searchValue ?
-            products.filter(product => {
+            allProducts.filter(product => {
                 return product.title
                     .toLowerCase()
                     .includes(
@@ -54,7 +54,7 @@ export default class Product extends Component {
         const noMoreProducts = page + productsPerPage >= allProducts.length;
 
         return (
-            <div>
+            <div >
                 <div style={divInput}>
                     <InputSearch
                         searchValue={searchValue}
@@ -67,7 +67,9 @@ export default class Product extends Component {
                     })
                 )}
                 {filteredProducts.length === 0 && (
-                    <p>Sorry, Product not found!</p>
+                    <div style={pStyle}>
+                        <p>Sorry, Product not found!</p>
+                    </div>
                 )}
                 <div style={buttonStyle}>
                     {!noMoreProducts && (
@@ -78,7 +80,7 @@ export default class Product extends Component {
                     )}
                     {!!noMoreProducts && (
                         <DisabledButton
-                            text='No More Products to See'
+                            text='No More Products to see'
                             onClick={this.loadMoreProducts}
                         />
                     )}
@@ -91,9 +93,18 @@ export default class Product extends Component {
 const divInput = {
     display: 'flex',
     justifyContent: 'center',
+    flexWrap: 'wrap',
     marginTop: '65px',
     height: '30px',
-    marginBottom:'25px'
+    marginBottom: '25px'
+}
+
+const pStyle ={
+    display:'flex',
+    justifyContent:'center',
+    color:'#FF0040',
+    fontWeight:'600',
+    textTransform:'uppercase',
 }
 
 const buttonStyle = {

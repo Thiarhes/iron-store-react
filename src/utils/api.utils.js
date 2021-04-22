@@ -28,11 +28,9 @@ class Api {
     };
 
     login = async (payload) => {
-        console.log(payload)
         const { email, password } = payload;
         try {
             const { data } = await this.api.post('/login', { email, password });
-            console.log(data)
             const { token } = data;
             localStorage.setItem('token', token);
 
@@ -61,6 +59,25 @@ class Api {
     getOneProduct = async (id) => {
         try {
             const { data } = await this.api.get(`/products/${id}`);
+            return data;
+        } catch (error) {
+            throw error
+        }
+    }
+
+    getCart = async (id) => {
+        try {
+            const { data } = await this.api.get(`/${id}`);
+            return data;
+        } catch (error) {
+            throw error
+        }
+    }
+
+    addToCart = async (payload) => {
+        const { productId, userId } = payload;
+        try {
+            const { data } = await this.api.post(`/`, { productId, userId });
             return data;
         } catch (error) {
             throw error

@@ -13,18 +13,17 @@ export default class ProductDetail extends Component {
   }
 
   render() {
-    const { title, price, description, image, category } = this.state;
+    const { title, description, image, category } = this.state;
     return (
       <div className="card" style={divCard}>
         <div className="card-image" style={cardImg}>
-          <img style={imgStyle} src={image} alt="Placeholder image" />
+          <img style={imgStyle} src={image} alt="Some Product " />
         </div>
         <div className="card-content" style={cardContent}>
           <div className="media">
             <div className="media-content">
               <p className="title is-4" style={titleStyle}>{title}</p>
               <p className="subtitle is-6" style={categoryStyle}>{category}</p>
-              <span style={priceStyle}>$ {price}</span>
             </div>
           </div>
           <div className="content" style={content}>
@@ -39,11 +38,11 @@ export default class ProductDetail extends Component {
 
 const divCard = {
   display: 'flex',
-  minHeight: '90vh',
   justifyContent: 'space-around',
-  marginTop: '10px',
-  minWidth:'480px',
-  background: 'rgb(134,199,200)',
+  marginTop: '50px',
+  minHeight:'100vh',
+  flexWrap:'wrap',
+  backgroundColor: 'rgb(134,199,200)',
   background: 'linear-gradient(0deg, rgba(192,244,245,1) 0%, rgba(240,234,233,1) 61%, rgba(234,240,233,1) 100%, rgba(245,242,235,1) 100%)',
 }
 
@@ -68,11 +67,6 @@ const titleStyle = {
 const categoryStyle = {
   textTransform: 'uppercase',
   fontWeight: '500',
-}
-
-const priceStyle = {
-  fontWeight: '600',
-  fontSize: '1.2em',
 }
 
 const content = {

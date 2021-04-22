@@ -67,12 +67,6 @@ export default class Login extends Component {
                                                 placeholder="Your Password" />
                                         </div>
                                     </div>
-                                    <div className="field">
-                                        <label className="checkbox">
-                                            <input type="checkbox" />
-                                      Remember me
-                                   </label>
-                                    </div>
                                     <button
                                         type='submit'
                                         onClick={this.handleSubmit}
