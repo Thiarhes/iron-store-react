@@ -4,18 +4,12 @@ import { Link } from 'react-router-dom';
 import api from '../utils/api.utils';
 
 export default class Card extends Component {
-    state = {
-        cart: '',
-    }
 
     handleClick = async () => {
         try {
-            await api.addToCart(this.props)
-            this.setState({
-                cart: [...this.props]
-            })
+            await api.addToCart({ productId: this.props._id, userId: this.props.user.id })
         } catch (error) {
-            
+            console.error(error);
         }
     }
 

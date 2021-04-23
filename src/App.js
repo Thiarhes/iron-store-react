@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './components/NavBar';
-import {Home} from './pages/Home';
+import { Home } from './pages/Home';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Product from './pages/Product';
@@ -12,17 +12,24 @@ export default class App extends Component {
   state = {
     loggedInUser: false,
     token: '',
-    // count: 0
+    user: {},
+    cart: []
   }
 
   handleLogin = (value) => {
     this.setState({
       loggedInUser: value
     });
-    if(value === false) {
+    if (value === false) {
       localStorage.removeItem("token");
       window.location = "/";
     }
+  }
+
+  handleSetUser = (user) => {
+    this.setState({
+      user: user
+    })
   }
 
   handleCount = () => {
@@ -44,16 +51,19 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <NavBar 
-        loggedInUser={this.state.loggedInUser} 
-        handleLogin={this.handleLogin} 
+        <NavBar
+          loggedInUser={this.state.loggedInUser}
+          handleLogin={this.handleLogin}
         // handleCount={this.handleCount}
         />
         <Switch>
           <Route exact path='/' render={(props) => <Home {...props} loggedInUser={this.state.loggedInUser} />} />
           <Route path='/signup' component={SignUp} />
-          <Route path='/login' render={(props) => <Login {...props} handleLogin={this.handleLogin} />} />
-          <Route path='/products' component={Product} />
+          <Route path='/login'
+            render={(props) => <Login {...props}
+              handleLogin={this.handleLogin}
+              setUser={this.handleSetUser} />} />
+          <Route path='/products' render={(props) => <Product {...props} user={this.state.user}/> }/>
           <Route path='/product/detail/:id' component={ProductDetail} />
           <Route path='/cart' component={Cart} />
         </Switch>

@@ -33,6 +33,7 @@ class Api {
             const { data } = await this.api.post('/login', { email, password });
             const { token } = data;
             localStorage.setItem('token', token);
+            return data.payload
 
         } catch (error) {
             throw error
@@ -77,7 +78,7 @@ class Api {
     addToCart = async (payload) => {
         const { productId, userId } = payload;
         try {
-            const { data } = await this.api.post(`/`, { productId, userId });
+            const { data } = await this.api.post(`/cart`, { productId, userId });
             return data;
         } catch (error) {
             throw error

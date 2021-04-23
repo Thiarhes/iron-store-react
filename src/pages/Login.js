@@ -19,9 +19,10 @@ export default class Login extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         try {
-           await api.login(this.state);
-           this.props.handleLogin(true);
-           this.props.history.push('/');
+            const user = await api.login(this.state);
+            this.props.handleLogin(true);
+            this.props.setUser(user)
+            this.props.history.push('/');
 
         } catch (error) {
             this.setState({
@@ -85,8 +86,8 @@ export default class Login extends Component {
 }
 
 const errorStyle = {
-    color:'#FF0040',
-    textTransform:'uppercase',
-    fontWeight:'500',
-    marginBottom:'10px',
+    color: '#FF0040',
+    textTransform: 'uppercase',
+    fontWeight: '500',
+    marginBottom: '10px',
 }
