@@ -68,8 +68,9 @@ class Api {
 
     getCart = async (id) => {
         try {
-            const { data } = await this.api.get(`/${id}`);
-            return data;
+            const req = await this.api.get(`/${id}`);
+            console.log(req)
+            return req.data;
         } catch (error) {
             throw error
         }
@@ -78,8 +79,8 @@ class Api {
     addToCart = async (payload) => {
         const { productId, userId } = payload;
         try {
-            const { data } = await this.api.post(`/cart`, { productId, userId });
-            return data;
+            const req = await this.api.post(`/cart`, { productId, userId });
+            return req.data;
         } catch (error) {
             throw error
         }

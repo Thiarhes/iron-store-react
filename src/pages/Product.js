@@ -63,7 +63,7 @@ export default class Product extends Component {
                 </div>
                 {filteredProducts.length > 0 && (
                     filteredProducts.map(product => {
-                        return <Card key={product._id}{...product} user={this.props.user}/>
+                        return <Card key={product._id}{...product} handleUpdateCart={this.props.handleUpdateCart} user={this.props.user}/>
                     })
                 )}
                 {filteredProducts.length === 0 && (

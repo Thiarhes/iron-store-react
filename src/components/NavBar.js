@@ -20,7 +20,7 @@ export default class NavBar extends Component {
     }
 
     render() {
-        const { loggedInUser, handleLogin, handleCount } = this.props;
+        const { loggedInUser, handleLogin, cartLength } = this.props;
         return (
             <nav style={navStyle} className="navbar has-background-grey" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
@@ -44,7 +44,7 @@ export default class NavBar extends Component {
                             {loggedInUser ?
                                     <div className="buttons" style={buttonStyle}>
                                         <Link to='/cart' className="button is-dark">
-                                            <strong>CART ({handleCount})</strong>
+                                            <strong>CART ({cartLength})</strong>
                                         </Link>
                                         <Link to='/products' className="button is-link">
                                             <strong>AMAZING LIST</strong>

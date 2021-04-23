@@ -13,7 +13,7 @@ export default class App extends Component {
     loggedInUser: false,
     token: '',
     user: {},
-    cart: []
+    cartLength: 0
   }
 
   handleLogin = (value) => {
@@ -32,9 +32,9 @@ export default class App extends Component {
     })
   }
 
-  handleCount = () => {
+  handleUpdateCart = () => {
     this.setState({
-      // count:''
+       cartLength: this.state.cartLength +1
     });
   }
 
@@ -54,7 +54,7 @@ export default class App extends Component {
         <NavBar
           loggedInUser={this.state.loggedInUser}
           handleLogin={this.handleLogin}
-        // handleCount={this.handleCount}
+          cartLength={this.state.cartLength}
         />
         <Switch>
           <Route exact path='/' render={(props) => <Home {...props} loggedInUser={this.state.loggedInUser} />} />
@@ -63,9 +63,9 @@ export default class App extends Component {
             render={(props) => <Login {...props}
               handleLogin={this.handleLogin}
               setUser={this.handleSetUser} />} />
-          <Route path='/products' render={(props) => <Product {...props} user={this.state.user}/> }/>
+          <Route path='/products' render={(props) => <Product {...props} user={this.state.user} handleUpdateCart={this.handleUpdateCart}/> }/>
           <Route path='/product/detail/:id' component={ProductDetail} />
-          <Route path='/cart' component={Cart} />
+          <Route path='/cart' render={(props) => <Cart {...props} user={this.state.user} />} />
         </Switch>
       </div>
     )
