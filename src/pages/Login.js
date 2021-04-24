@@ -21,7 +21,7 @@ export default class Login extends Component {
         try {
             const user = await api.login(this.state);
             this.props.handleLogin(true);
-            this.props.setUser(user)
+            this.props.setUser(user);
             this.props.history.push('/');
 
         } catch (error) {

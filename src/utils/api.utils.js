@@ -33,6 +33,8 @@ class Api {
             const { data } = await this.api.post('/login', { email, password });
             const { token } = data;
             localStorage.setItem('token', token);
+            localStorage.setItem('user', data);
+            
             return data.payload
 
         } catch (error) {
@@ -69,7 +71,7 @@ class Api {
     getCart = async (id) => {
         try {
             const { data } = await this.api.get(`/cart/${id}`);
-            return data;
+            return data.data;
         } catch (error) {
             throw error
         }
@@ -80,6 +82,15 @@ class Api {
         try {
             const {data} = await this.api.post(`/cart`, { productId, userId });
             return data;
+        } catch (error) {
+            throw error
+        }
+    }
+
+    removeOneProduct = async (payload) => {
+        const { productId, userId } = payload;
+        try {
+            await this.api.post(`/cart/removeProd`, {productId, userId});
         } catch (error) {
             throw error
         }

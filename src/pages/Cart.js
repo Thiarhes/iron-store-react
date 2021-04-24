@@ -1,27 +1,20 @@
 import React, { Component } from 'react'
-import api from '../utils/api.utils';
+import CardCart from '../components/CardCart';
 
 export default class Cart extends Component {
     state = {
-        products: []
+        products: this.props.cart
     }
-
-    componentDidMount = async () => {
-        const userId = this.props.user.id;
-        
-        if (userId) {
-            const response = await api.getCart(userId);
-            this.setState({
-                products: response.products
-            })
-        }
-    }
-
 
     render() {
+        const { products } = this.state
         return (
             <div style={divContainer}>
-                <h1>Ola cart</h1>
+                {products.map(product => {
+                    return <div style={divProduct}>
+                        <CardCart key={product._id}{...product} handleDropFromCart={this.props.handleDropFromCart} user={this.props.user} />
+                    </div>
+                })}
             </div>
         )
     }
@@ -29,6 +22,11 @@ export default class Cart extends Component {
 
 const divContainer = {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
-    marginTop: '100px',
+}
+
+const divProduct = {
+    margin: '150px 25px',
+    maxHeight: '150px',
 }

@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Product from './pages/Product';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
+import api from './utils/api.utils';
 import { Switch, Route } from 'react-router-dom';
 
 export default class App extends Component {
@@ -13,7 +14,7 @@ export default class App extends Component {
     loggedInUser: false,
     token: '',
     user: {},
-    cartLength: 0
+    cart: []
   }
 
   handleLogin = (value) => {
@@ -26,24 +27,29 @@ export default class App extends Component {
     }
   }
 
-  handleSetUser = (user) => {
+  updateCart = async (id = this.state.user.id) => {
+    const response = await api.getCart(id);
     this.setState({
-      user: user
+      cart: response.products
     })
   }
 
-  handleUpdateCart = () => {
+  handleSetUser = (user) => {
+    this.updateCart(user.id)
     this.setState({
-       cartLength: this.state.cartLength +1
-    });
+      user: user,
+    })
   }
 
   componentDidMount = async () => {
-    const storedToken = localStorage.getItem('token');
+    this.updateCart();
+    const storedToken = localStorage.getItem('token', 'user');
+
     if (storedToken) {
       this.setState({
         loggedInUser: true,
-        token: storedToken
+        token: storedToken,
+        
       })
     }
   }
@@ -54,7 +60,7 @@ export default class App extends Component {
         <NavBar
           loggedInUser={this.state.loggedInUser}
           handleLogin={this.handleLogin}
-          cartLength={this.state.cartLength}
+          cartLength={this.state.cart.length}
         />
         <Switch>
           <Route exact path='/' render={(props) => <Home {...props} loggedInUser={this.state.loggedInUser} />} />
@@ -62,10 +68,11 @@ export default class App extends Component {
           <Route path='/login'
             render={(props) => <Login {...props}
               handleLogin={this.handleLogin}
-              setUser={this.handleSetUser} />} />
-          <Route path='/products' render={(props) => <Product {...props} user={this.state.user} handleUpdateCart={this.handleUpdateCart}/> }/>
+              setUser={this.handleSetUser} />}
+          />
+          <Route path='/products' render={(props) => <Product {...props} user={this.state.user} handleUpdateCart={this.updateCart} />} />
           <Route path='/product/detail/:id' component={ProductDetail} />
-          <Route path='/cart' render={(props) => <Cart {...props} user={this.state.user} />} />
+          <Route path='/cart' render={(props) => <Cart {...props} user={this.state.user} handleDropFromCart={this.updateCart} cart={this.state.cart} />} />
         </Switch>
       </div>
     )
