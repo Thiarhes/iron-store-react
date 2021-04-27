@@ -5,7 +5,7 @@ export const Home = ( props ) => {
         <div>
             {props.loggedInUser ?
               <> 
-                <p style={pStyle}>Choose your favorite game console and accessories. Check out our amazing list!</p>
+                <p style={pStyle}>Choose your favorite video game console and accessories. Check out our amazing list!</p>
                 <img style={imgLoggedStyle} src='./assets/images/consoles3.png' alt='consoles img' />
                 </>
                 : 

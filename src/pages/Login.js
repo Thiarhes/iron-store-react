@@ -19,11 +19,14 @@ export default class Login extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         try {
-           await api.login(this.state);
-           this.props.handleLogin(true);
-           this.props.history.push('/');
+            const user = await api.login(this.state);
+            console.log(user)
+            this.props.handleLogin(true);
+            this.props.setUser(user);
+            this.props.history.push('/');
 
         } catch (error) {
+            console.log(error)
             this.setState({
                 message: 'Email and password does not match with a registered user'
             })
@@ -67,12 +70,6 @@ export default class Login extends Component {
                                                 placeholder="Your Password" />
                                         </div>
                                     </div>
-                                    <div className="field">
-                                        <label className="checkbox">
-                                            <input type="checkbox" />
-                                      Remember me
-                                   </label>
-                                    </div>
                                     <button
                                         type='submit'
                                         onClick={this.handleSubmit}
@@ -91,8 +88,8 @@ export default class Login extends Component {
 }
 
 const errorStyle = {
-    color:'#FF0040',
-    textTransform:'uppercase',
-    fontWeight:'500',
-    marginBottom:'10px',
+    color: '#FF0040',
+    textTransform: 'uppercase',
+    fontWeight: '500',
+    marginBottom: '10px',
 }

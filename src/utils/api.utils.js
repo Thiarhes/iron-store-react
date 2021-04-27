@@ -4,6 +4,7 @@ class Api {
     constructor() {
         this.api = axios.create({
             baseURL: 'https://iron-store-node.herokuapp.com'
+            // baseURL: 'http://localhost:5000'
         });
 
         this.api.interceptors.request.use(
@@ -28,13 +29,14 @@ class Api {
     };
 
     login = async (payload) => {
-        console.log(payload)
         const { email, password } = payload;
         try {
             const { data } = await this.api.post('/login', { email, password });
-            console.log(data)
             const { token } = data;
             localStorage.setItem('token', token);
+            localStorage.setItem('user', data);
+            
+            return data.payload
 
         } catch (error) {
             throw error
@@ -62,6 +64,43 @@ class Api {
         try {
             const { data } = await this.api.get(`/products/${id}`);
             return data;
+        } catch (error) {
+            throw error
+        }
+    }
+
+    getCart = async (id) => {
+        try {
+            const { data } = await this.api.get(`/cart/${id}`);
+            return data;
+        } catch (error) {
+            throw error
+        }
+    }
+
+    addToCart = async (payload) => {
+        const { productId, userId } = payload;
+        try {
+            const {data} = await this.api.post(`/cart`, { productId, userId });
+            return data;
+        } catch (error) {
+            throw error
+        }
+    }
+
+    removeOneProduct = async (payload) => {
+        const { productId, userId } = payload;
+        try {
+            await this.api.post(`/cart/removeProd`, {productId, userId});
+        } catch (error) {
+            throw error
+        }
+    }
+
+    emptyCart = async (payload) => {
+        const { userId } = payload;
+        try {
+            await this.api.put(`/cart`, { userId });
         } catch (error) {
             throw error
         }

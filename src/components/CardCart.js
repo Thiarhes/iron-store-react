@@ -1,35 +1,31 @@
 import React, { Component } from 'react'
 import 'bulma/css/bulma.css';
-import { Link } from 'react-router-dom';
 import api from '../utils/api.utils';
 
-export default class Card extends Component {
+export default class CardCart extends Component {
     
     handleClick = async () => {
         try {
-            await api.addToCart({ productId: this.props._id, userId: this.props.user.id })
-            this.props.handleUpdateCart();
+            await api.removeOneProduct({ productId: this.props._id, userId: this.props.user.id })
+            this.props.handleDropFromCart();
         } catch (error) {
             console.error(error);
         }
     }
     
     render() {
-        const { title, image, price, _id } = this.props;
+        const { title, image, price } = this.props;
         return (
             <div className="card" style={divCard}>
                 <div className="card-image" >
-                    <Link to={`/product/detail/${_id}`}>
                         <img style={imgStyle} src={image} alt="Some Product" />
-                    </Link>
                 </div>
                 <div style={divDetails}>
                     <p style={titleStyle}>{title}</p>
                     <span style={priceStyle}>$ {price}</span>
-                    <Link to={`/product/detail/${_id}`}><span style={linkStyle}>DETAILS</span></Link>
                     <button
                         onClick={() => this.handleClick(this.props)}
-                        style={cartButton}>ADD TO CART</button>
+                        style={cartButton}>REMOVE</button>
                 </div>
             </div>
         )
@@ -42,7 +38,7 @@ const divCard = {
     textAlign: 'center',
     justifyContent: 'space-around',
     margin: '0 auto',
-    minHeight: '80vh',
+    minHeight: '30vh',
     maxWidth: '960px',
     marginTop: '10px',
     backgroundColor: 'rgb(231,245,245)',
@@ -58,7 +54,7 @@ const divDetails = {
 
 const imgStyle = {
     maxWidth: '320px',
-    maxHeight: '350px',
+    maxHeight: '80px',
 }
 
 const titleStyle = {
@@ -73,21 +69,12 @@ const priceStyle = {
     fontSize: '1.2em',
 }
 
-const linkStyle = {
-    fontSize: '1.1em',
-    fontWeight: '600',
-    color: '#fff',
-    background: '#AEB6BF',
-    padding: '3px',
-    borderRadius: '5px',
-}
-
 const cartButton = {
-    margin: '0 auto',
     fontSize: '1.1em',
     fontWeight: '600',
     color: '#fff',
     background: '#393634',
     padding: '3px',
     borderRadius: '5px',
+    cursor:'pointer',
 }

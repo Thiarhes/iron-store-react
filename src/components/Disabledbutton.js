@@ -16,7 +16,7 @@ export default class DisabledButton extends Component {
 }
 
 const buttonStyle = {
-    width:'20%',
+    display:'inline-block',
     background:'#34495E',
     color:'#fff',
     border:'none',
@@ -26,3 +26,9 @@ const buttonStyle = {
     fontSize:'1.1rem',
     fontWeight:'600'
 }
+
+
+
+
+
+
