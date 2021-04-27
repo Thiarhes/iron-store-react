@@ -76,4 +76,5 @@ const cartButton = {
     background: '#393634',
     padding: '3px',
     borderRadius: '5px',
+    cursor:'pointer',
 }

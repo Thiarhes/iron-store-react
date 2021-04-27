@@ -3,8 +3,8 @@ import axios from 'axios';
 class Api {
     constructor() {
         this.api = axios.create({
-            // baseURL: 'https://iron-store-node.herokuapp.com'
-            baseURL: 'http://localhost:5000'
+            baseURL: 'https://iron-store-node.herokuapp.com'
+            // baseURL: 'http://localhost:5000'
         });
 
         this.api.interceptors.request.use(
@@ -92,6 +92,15 @@ class Api {
         const { productId, userId } = payload;
         try {
             await this.api.post(`/cart/removeProd`, {productId, userId});
+        } catch (error) {
+            throw error
+        }
+    }
+
+    emptyCart = async (payload) => {
+        const { userId } = payload;
+        try {
+            await this.api.put(`/cart`, { userId });
         } catch (error) {
             throw error
         }
