@@ -2,20 +2,24 @@ import React, { Component } from 'react'
 import CardCart from '../components/CardCart';
 
 export default class Cart extends Component {
-    state = {
-        products: this.props.cart
-    }
 
     render() {
-        const { products } = this.state
+        const products = this.props.cart
         return (
-            <div style={divContainer}>
-                {products.map(product => {
-                    return <div style={divProduct}>
-                        <CardCart key={product._id}{...product} handleDropFromCart={this.props.handleDropFromCart} user={this.props.user} />
+                <div style={divContainer}>
+                    <div style={divCard}>
+                        {products.map(product => {
+                            return <div style={divProduct} key={product._id}>
+                                <CardCart {...product} handleDropFromCart={this.props.handleDropFromCart} user={this.props.user} />
+                            </div>
+                        })}
                     </div>
-                })}
-            </div>
+                    <div style={subTotal}>
+                        SubTotal $ {products.reduce((acc, product) => {
+                        return acc + product.price
+                    }, 0)}
+                    </div>
+                </div>
         )
     }
 }
@@ -23,10 +27,28 @@ export default class Cart extends Component {
 const divContainer = {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent:'space-around',
+    marginBottom:'130px',
+    marginTop:'70px',
+}
+
+const divCard={
+    marginBottom:'50px',
 }
 
 const divProduct = {
-    margin: '150px 25px',
-    maxHeight: '150px',
+    maxHeight: '350px',
+    marginBottom:'40px',
+}
+
+const subTotal = {
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    padding: '10px',
+    width: '64%',
+    margin: 'auto',
+    fontSize: '2em',
+    background: 'black',
+    color: '#fff',
 }

@@ -3,7 +3,8 @@ import axios from 'axios';
 class Api {
     constructor() {
         this.api = axios.create({
-            baseURL: 'https://iron-store-node.herokuapp.com'
+            // baseURL: 'https://iron-store-node.herokuapp.com'
+            baseURL: 'http://localhost:5000'
         });
 
         this.api.interceptors.request.use(
@@ -71,7 +72,7 @@ class Api {
     getCart = async (id) => {
         try {
             const { data } = await this.api.get(`/cart/${id}`);
-            return data.data;
+            return data;
         } catch (error) {
             throw error
         }

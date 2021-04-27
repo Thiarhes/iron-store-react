@@ -42,14 +42,18 @@ export default class App extends Component {
   }
 
   componentDidMount = async () => {
-    this.updateCart();
-    const storedToken = localStorage.getItem('token', 'user');
+    if(this.state.loggedInUser) {
+      this.updateCart();
+    }
+    
+    const storedToken = localStorage.getItem('token');
+    const storedUser = localStorage.getItem('user');
 
     if (storedToken) {
       this.setState({
         loggedInUser: true,
         token: storedToken,
-        
+        user: storedUser
       })
     }
   }

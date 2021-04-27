@@ -38,7 +38,7 @@ const divCard = {
     textAlign: 'center',
     justifyContent: 'space-around',
     margin: '0 auto',
-    minHeight: '50vh',
+    minHeight: '30vh',
     maxWidth: '960px',
     marginTop: '10px',
     backgroundColor: 'rgb(231,245,245)',
@@ -70,7 +70,6 @@ const priceStyle = {
 }
 
 const cartButton = {
-    // margin: '0 auto',
     fontSize: '1.1em',
     fontWeight: '600',
     color: '#fff',

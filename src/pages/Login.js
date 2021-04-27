@@ -20,11 +20,13 @@ export default class Login extends Component {
         e.preventDefault();
         try {
             const user = await api.login(this.state);
+            console.log(user)
             this.props.handleLogin(true);
             this.props.setUser(user);
             this.props.history.push('/');
 
         } catch (error) {
+            console.log(error)
             this.setState({
                 message: 'Email and password does not match with a registered user'
             })
