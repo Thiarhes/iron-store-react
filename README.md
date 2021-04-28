@@ -32,6 +32,6 @@ Cada produto possui nome, preço, uma opção para apresentação dos detalhes d
 
 ### Fique à vontade para acessar o aplicativo no Netlify!
 
-[IRON STORE](https://ironstore.netlify.app)
+- 👉 [IRON STORE](https://ironstore.netlify.app)
 
 ---
