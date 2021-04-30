@@ -17,13 +17,14 @@ class Api {
                 };
                 return config;
             },
-            error => console.error(error)
+            error => { return Promise.reject(error)}
         );
 
         this.api.interceptors.response.use(
             (response) => response,
             (error) => {
                 localStorage.removeItem('token');
+                throw error;
             }
         )
     };
@@ -47,6 +48,7 @@ class Api {
         try {
             await this.api.post('/signup', payload);
         } catch (error) {
+            console.log(error)
             throw error
         }
     };
