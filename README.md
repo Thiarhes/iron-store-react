@@ -34,4 +34,6 @@ Cada produto possui nome, preço, uma opção para apresentação dos detalhes d
 
 - 👉 [IRON STORE](https://ironstore.netlify.app)
 
+- 👉 [Apresentação](https://docs.google.com/presentation/d/1Jp4C0cmwV3KtGP9KPEABoVSzKvSE3zi3mY5DDfygLyg/edit#slide=id.p)
+
 ---
